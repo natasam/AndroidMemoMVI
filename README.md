@@ -33,4 +33,6 @@ The UI is done with simplicity, in the Neobrutalism style, as the focus and the 
 * Modern App (recommended) architecture - UDF, and an MVI pattern.
 * ### Data, Domain, and UI Layer.
 * Learn more about the recommended [Modern App Architecture](https://developer.android.com/topic/architecture) .
-![app screenshot](photos/screenshot.png)
+
+  
+  <img src="photos/screenshot.png" alt="Android App " width="200"> 
