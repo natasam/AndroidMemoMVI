@@ -9,7 +9,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/natasam/ModernArchWeatherApp) ![Static Badge](https://img.shields.io/badge/android-blue?logo=android) ![GitHub](https://img.shields.io/github/license/natasam/ModernArchWeatherApp)
 
 
-## What is included: Coroutines, Hilt, Modern Architecture Components, Udf, Room, Retrofit, Material Components, Accompanist Lib and more.
+## What is included: Coroutines, Hilt, Modern Architecture Components, UDF, Room, Material Components, Accompanist Lib and more.
 * **Unidirectional Data Flow**: Ensuring a consistent and predictable behavior.
 * **MVI Pattern:** A robust pattern that simplifies user interactions and data updates.
 * **Domain Layer**: An optional layer that encapsulates all the business logic, making the app robust and efficient, making the app's core functions clear and concise.
@@ -22,7 +22,6 @@ The UI is done with simplicity, in the Neobrutalism style, as the focus and the 
 
 
 * [Navigation](https://developer.android.com/jetpack/compose/navigation)
-* [Retrofit](https://square.github.io/retrofit)
 * [Location](https://developer.android.com/training/location)
 * [Hilt](https://developer.android.com/training/dependency-injection/hilt-android)
 * [Room](https://developer.android.com/jetpack/androidx/releases/room)
