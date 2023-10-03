@@ -6,13 +6,13 @@ import com.natasamisic.mymemos.feature.data.data_source.db.MemoDatabase
 import com.natasamisic.mymemos.feature.data.data_source.MemoLocalDataSource
 import com.natasamisic.mymemos.feature.data.repository.MemoRepositoryImpl
 import com.natasamisic.mymemos.feature.domain.repository.MemoRepository
-import com.natasamisic.mymemos.feature.domain.use_case.AddMemoUseCase
-import com.natasamisic.mymemos.feature.domain.use_case.DeleteMemoUseCase
-import com.natasamisic.mymemos.feature.domain.use_case.GetMemoUseCase
-import com.natasamisic.mymemos.feature.domain.use_case.GetMemosUseCase
+import com.natasamisic.mymemos.feature.domain.usecase.AddMemoUseCase
+import com.natasamisic.mymemos.feature.domain.usecase.DeleteMemoUseCase
+import com.natasamisic.mymemos.feature.domain.usecase.GetMemoUseCase
+import com.natasamisic.mymemos.feature.domain.usecase.GetMemosUseCase
 
 
-import com.natasamisic.mymemos.feature.domain.use_case.MemoUseCases
+import com.natasamisic.mymemos.feature.domain.usecase.MemoUseCases
 
 import dagger.Module
 import dagger.Provides

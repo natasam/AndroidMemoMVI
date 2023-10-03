@@ -26,7 +26,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.natasamisic.mymemos.feature.ui.add_memo.AddMemoScreen
 import com.natasamisic.mymemos.feature.ui.memos.MemosScreen
 import com.natasamisic.mymemos.feature.ui.util.Screen
-import com.natasamisic.mymemos.ui.theme.mymemosTheme
+import com.natasamisic.mymemos.ui.theme.MyMemosTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun MyAppContent() {
-    mymemosTheme {
+    MyMemosTheme {
         SetUpStatusBar()
         Surface(
             modifier = Modifier.fillMaxSize(),

@@ -5,7 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.natasamisic.mymemos.feature.domain.model.MemoDto
-import com.natasamisic.mymemos.feature.domain.use_case.MemoUseCases
+import com.natasamisic.mymemos.feature.domain.usecase.MemoUseCases
 import com.natasamisic.mymemos.feature.domain.util.MemoSortType
 import com.natasamisic.mymemos.feature.domain.util.SortType
 import dagger.hilt.android.lifecycle.HiltViewModel

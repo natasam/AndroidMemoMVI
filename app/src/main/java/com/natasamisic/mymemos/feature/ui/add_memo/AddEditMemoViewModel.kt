@@ -9,7 +9,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.natasamisic.mymemos.feature.domain.model.InvalidMemoException
-import com.natasamisic.mymemos.feature.domain.use_case.MemoUseCases
+import com.natasamisic.mymemos.feature.domain.usecase.MemoUseCases
 import com.natasamisic.mymemos.feature.domain.model.MemoDto
 import com.natasamisic.mymemos.feature.domain.util.ColorUtils.memoColors
 import dagger.hilt.android.lifecycle.HiltViewModel

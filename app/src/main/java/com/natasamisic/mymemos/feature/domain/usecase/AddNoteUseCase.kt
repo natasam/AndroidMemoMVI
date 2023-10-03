@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.domain.use_case
+package com.natasamisic.mymemos.feature.domain.usecase
 
 import com.natasamisic.mymemos.feature.domain.model.InvalidMemoException
 import com.natasamisic.mymemos.feature.domain.model.MemoDto

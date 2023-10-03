@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.domain.use_case
+package com.natasamisic.mymemos.feature.domain.usecase
 
 
 data class MemoUseCases(
