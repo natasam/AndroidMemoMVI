@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,10 +16,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.IconButton
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -37,27 +39,25 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.natasamisic.mymemos.feature.domain.util.ColorUtils.memoColors
-import com.natasamisic.mymemos.presentaion.add_edit_Memo.componants.TransparentHintTextField
+import com.natasamisic.mymemos.feature.presentaion.add_memo.componants.CustomHintTextField
+import com.natasamisic.mymemos.feature.presentaion.util.NeubrutalismHelper.applyBrutalism
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun AddEditMemoScreen(
+fun AddMemoScreen(
     navController: NavController,
     memoColor: Int,
-    viewModel: AddEditMemoViewModel = hiltViewModel()
+    viewModel: AddEditMemoViewModel = hiltViewModel(), onNavigateToHomeScreen: () -> Unit
 ) {
-
     val titleState = viewModel.memoTitle.value
     val contentState = viewModel.memoContent.value
 
     val scaffoldState = rememberScaffoldState()
 
     val memoBackgroundAnimatable = remember {
-        Animatable(
-            Color(if (memoColor != -1) memoColor else viewModel.memoColor.value)
-        )
+        Animatable(Color(if (memoColor != -1) memoColor else viewModel.memoColor.value))
     }
 
     val scope = rememberCoroutineScope()
@@ -73,74 +73,44 @@ fun AddEditMemoScreen(
                     navController.navigateUp()
                 }
             }
-
         }
     }
 
     Scaffold(
+        backgroundColor = memoBackgroundAnimatable.value,
         topBar = {
-
-            Text(
-                modifier = Modifier.padding(top = 50.dp, start = 26.dp),
-                text = "My Memos",
-                style = MaterialTheme.typography.headlineMedium, color = Color.Black
-
+            TopAppBar(elevation = 0.dp,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 38.dp),
+                backgroundColor = memoBackgroundAnimatable.value,
+                title = { MemoTopBar() },
+                navigationIcon = { BackButton(onNavigateToHomeScreen) }
             )
         },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {
-                    viewModel.onEvent(AddEditMemoEvent.SaveMemo)
-                },
-                containerColor = MaterialTheme.colorScheme.primary
-            ) {
-                Icon(imageVector = Icons.Default.Star, contentDescription = "save Memo")
-            }
-        },
+        floatingActionButton = { MemoFAB { viewModel.onEvent(AddEditMemoEvent.SaveMemo) } },
         scaffoldState = scaffoldState
     ) {
-
         Column(
             modifier = Modifier
+                .padding(it)
+                .padding(start = 16.dp, end = 16.dp, top = 8.dp)
                 .fillMaxHeight()
                 .background(memoBackgroundAnimatable.value)
-                .padding(16.dp)
-        ) {
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                memoColors.forEach { color ->
-                    val colorInt = color.toArgb()
-                    Box(
-                        modifier = Modifier
-                            .size(50.dp)
-                            .clip(CircleShape)
-                            .background(color)
-                            .border(
-                                width = 3.dp,
-                                color = if (viewModel.memoColor.value == colorInt) Color.Black else Color.Transparent,
-                                shape = CircleShape
-                            )
-                            .clickable {
-                                scope.launch {
-                                    memoBackgroundAnimatable.animateTo(
-                                        targetValue = Color(colorInt),
-                                        animationSpec = tween(
-                                            durationMillis = 500
-                                        )
-                                    )
-                                }
-                                viewModel.onEvent(AddEditMemoEvent.ChangeColor(colorInt))
-                            }
-                    )
+        ) {
+            PriorityPickerRow(
+                selectedColor = viewModel.memoColor.value,
+                onColorSelected = { color ->
+                    scope.launch {
+                        memoBackgroundAnimatable.animateTo(
+                            targetValue = Color(color),
+                            animationSpec = tween(durationMillis = 500)
+                        )
+                    }
+                    viewModel.onEvent(AddEditMemoEvent.ChangeColor(color))
                 }
-            }
+            )
             Spacer(modifier = Modifier.height(16.dp))
-            TransparentHintTextField(
+            CustomHintTextField(
                 text = titleState.text,
                 hint = titleState.hint,
                 onValueChange = { viewModel.onEvent(AddEditMemoEvent.EnteredTitle(it)) },
@@ -152,7 +122,7 @@ fun AddEditMemoScreen(
                 textStyle = MaterialTheme.typography.headlineSmall
             )
             Spacer(modifier = Modifier.height(16.dp))
-            TransparentHintTextField(
+            CustomHintTextField(
                 text = contentState.text,
                 hint = contentState.hint,
                 onValueChange = { viewModel.onEvent(AddEditMemoEvent.EnteredContent(it)) },
@@ -162,6 +132,75 @@ fun AddEditMemoScreen(
                 isHintVisible = contentState.isHintVisible,
                 textStyle = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.fillMaxHeight()
+            )
+        }
+    }
+}
+
+@Composable
+private fun BackButton(onBackClick: () -> Unit) {
+    IconButton(onClick = onBackClick) {
+        Icon(
+            modifier = Modifier
+                .size(48.dp)
+                .applyBrutalism(
+                    backgroundColor = Color.White,
+                    borderWidth = 3.dp,
+                    cornersRadius = 40.dp
+                )
+                .padding(4.dp),
+            imageVector = Icons.Default.ArrowBack,
+            contentDescription = null,
+            tint = Color.Black
+        )
+    }
+}
+@Composable
+fun MemoTopBar() {
+    Text(
+        modifier = Modifier.padding(top = 2.dp, start = 26.dp),
+        text = "New memo",
+        style = MaterialTheme.typography.headlineMedium,
+        color = Color.Black
+    )
+}
+
+@Composable
+fun MemoFAB(onClick: () -> Unit) {
+    FloatingActionButton(
+        modifier = Modifier.padding(bottom = 50.dp),
+        onClick = onClick,
+        containerColor = Color(0xFFD8ED49)
+    ) {
+        Icon(imageVector = Icons.Default.Check, contentDescription = "save Memo")
+    }
+}
+
+@Composable
+fun PriorityPickerRow(
+    selectedColor: Int,
+    onColorSelected: (Int) -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        memoColors.forEach { color ->
+            val colorInt = color.toArgb()
+            Box(
+                modifier = Modifier
+                    .applyBrutalism(
+                        backgroundColor = color,
+                        cornersRadius = 40.dp, shadowColor =
+                        if (selectedColor == colorInt) Color.Black else Color.Gray,
+                        offsetY = if (selectedColor == colorInt) 0.dp else 1.dp,
+                        offsetX = if (selectedColor == colorInt) 0.dp else 1.dp
+                    )
+                    .size(40.dp)
+                    .clip(CircleShape)
+                    .clickable { onColorSelected(colorInt) }
             )
         }
     }

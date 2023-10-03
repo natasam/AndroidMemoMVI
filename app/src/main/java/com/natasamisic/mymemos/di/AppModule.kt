@@ -2,7 +2,8 @@ package com.natasamisic.mymemos.di
 
 import android.app.Application
 import androidx.room.Room
-import com.natasamisic.mymemos.feature.data.data_source.MemoDatabase
+import com.natasamisic.mymemos.feature.data.data_source.db.MemoDatabase
+import com.natasamisic.mymemos.feature.data.data_source.MemoLocalDataSource
 import com.natasamisic.mymemos.feature.data.repository.MemoRepositoryImpl
 import com.natasamisic.mymemos.feature.domain.repository.MemoRepository
 import com.natasamisic.mymemos.feature.domain.use_case.AddMemoUseCase
@@ -35,10 +36,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideMemoRepository(db: MemoDatabase): MemoRepository {
-        return MemoRepositoryImpl(db.MemosDao)
+    fun provideMemoDataSource(db: MemoDatabase): MemoLocalDataSource {
+        return MemoLocalDataSource(db.memosDao)
     }
-
+    @Provides
+    @Singleton
+    fun provideMemoRepository(ds: MemoLocalDataSource): MemoRepository {
+        return MemoRepositoryImpl(ds)
+    }
 
     @Provides
     @Singleton

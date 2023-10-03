@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.data.data_source.model
+package com.natasamisic.mymemos.feature.data.data_source.db.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -11,5 +11,3 @@ data class Memo(
     val colorPriority: Int,
     @PrimaryKey val id: Int? = null
 )
-
-class InvalidMemoException(message: String): Exception(message)

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.natasamisic.mymemos.feature.domain.model.InvalidMemoException
 import com.natasamisic.mymemos.feature.domain.use_case.MemoUseCases
-import com.natasamisic.mymemos.feature.data.data_source.model.Memo
+import com.natasamisic.mymemos.feature.domain.model.MemoDto
 import com.natasamisic.mymemos.feature.domain.util.ColorUtils.memoColors
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -27,7 +27,7 @@ class AddEditMemoViewModel @Inject constructor(
     private val _memoTitle = mutableStateOf(MemoTextFieldState(hint = "Enter title..."))
     val memoTitle: State<MemoTextFieldState> = _memoTitle
 
-    private val _memoContent = mutableStateOf(MemoTextFieldState(hint = "Enter some content..."))
+    private val _memoContent = mutableStateOf(MemoTextFieldState(hint = "Enter text..."))
     val memoContent: State<MemoTextFieldState> = _memoContent
 
     private val _memoColor = mutableStateOf(memoColors.random().toArgb())
@@ -72,7 +72,7 @@ class AddEditMemoViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 memoUseCases.addMemoUseCase(
-                    Memo(
+                    MemoDto(
                         title = memoTitle.value.text,
                         text = memoContent.value.text,
                         timestamp = System.currentTimeMillis(),

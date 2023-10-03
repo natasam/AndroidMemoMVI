@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.presentaion.util
+package com.natasamisic.mymemos.feature.presentaion.util
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

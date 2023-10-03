@@ -4,7 +4,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.natasamisic.mymemos.feature.data.data_source.model.Memo
+import com.natasamisic.mymemos.feature.domain.model.MemoDto
 import com.natasamisic.mymemos.feature.domain.use_case.MemoUseCases
 import com.natasamisic.mymemos.feature.domain.util.MemoSortType
 import com.natasamisic.mymemos.feature.domain.util.SortType
@@ -23,7 +23,7 @@ class MemosViewModel @Inject constructor(
     private val _state = mutableStateOf(MemoState())
     val state: State<MemoState> = _state
 
-    private var recentlyDeletedMemo: Memo? = null
+    private var recentlyDeletedMemo: MemoDto? = null
 
     private var getMemosJob: Job? = null
 
@@ -33,7 +33,7 @@ class MemosViewModel @Inject constructor(
 
     fun onEvent(event: MemosEvent) {
         when (event) {
-            is MemosEvent.Order -> {
+            is MemosEvent.Sort -> {
                 if (
                     state.value.memoOrder::class == event.order::class
                     && state.value.memoOrder.sortType == event.order.sortType
@@ -64,6 +64,9 @@ class MemosViewModel @Inject constructor(
                 )
             }
 
+            is MemosEvent.EditMemo -> {
+
+            }
         }
 
     }

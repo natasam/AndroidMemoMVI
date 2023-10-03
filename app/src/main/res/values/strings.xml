@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">mymemos</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="color">Color</string>
+    <string name="date_format">dd.MM.yyyy</string>
+    <string name="my_memos">My Memos</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
 </resources>

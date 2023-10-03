@@ -1,16 +1,16 @@
 package com.natasamisic.mymemos.feature.domain.repository
 
-import com.natasamisic.mymemos.feature.data.data_source.model.Memo
+import com.natasamisic.mymemos.feature.domain.model.MemoDto
 import kotlinx.coroutines.flow.Flow
 
 interface MemoRepository {
 
-    fun getMemos(): Flow<List<Memo>>
+    fun getMemos(): Flow<List<MemoDto>>
 
-    suspend fun getMemoById(id: Int): Memo?
+    suspend fun getMemoById(id: Int): MemoDto?
 
-    suspend fun insertMemo(Memo: Memo)
+    suspend fun insertMemo(memo: MemoDto)
 
-    suspend fun deleteMemo(Memo: Memo)
+    suspend fun deleteMemo(memo: MemoDto)
 
 }

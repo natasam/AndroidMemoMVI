@@ -1,7 +1,7 @@
 package com.natasamisic.mymemos.feature.domain.use_case
 
 
-import com.natasamisic.mymemos.feature.data.data_source.model.Memo
+import com.natasamisic.mymemos.feature.domain.model.MemoDto
 import com.natasamisic.mymemos.feature.domain.repository.MemoRepository
 import com.natasamisic.mymemos.feature.domain.util.MemoSortType
 import com.natasamisic.mymemos.feature.domain.util.SortType
@@ -14,7 +14,7 @@ class GetMemosUseCase(
 
     operator fun invoke(
         memoSortType: MemoSortType = MemoSortType.Date(SortType.Descending)
-    ): Flow<List<Memo>> {
+    ): Flow<List<MemoDto>> {
         return repository.getMemos().map { Memos ->
             when (memoSortType.sortType) {
                 is SortType.Ascending -> {

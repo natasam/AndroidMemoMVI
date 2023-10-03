@@ -1,12 +1,19 @@
 package com.natasamisic.mymemos.feature.presentaion.memos.componants
 
-import com.natasamisic.mymemos.feature.data.data_source.model.Memo
-
-
-
-import androidx.compose.foundation.layout.*
-
-
+import android.text.format.DateFormat
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Icon
@@ -16,64 +23,87 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.natasamisic.mymemos.presentaion.util.NeubrutalismHelper.applyBrutalism
+import androidx.compose.ui.unit.sp
+import com.natasamisic.mymemos.R
+import com.natasamisic.mymemos.feature.domain.model.MemoDto
+import com.natasamisic.mymemos.feature.presentaion.util.NeubrutalismHelper.applyBrutalism
 
 @Composable
 fun MemoItem(
-    Memo: Memo,
-    modifier: Modifier = Modifier,
-    cornerRadius: Dp = 10.dp,
-    cutCornerSize: Dp = 30.dp,
-    onDeleteClick: () -> Unit
+    memo: MemoDto, onDeleteClick: () -> Unit, onItemClick: () -> Unit
 ) {
     Box(
-         modifier = Modifier.applyBrutalism(
-             backgroundColor = Color.White,
-            // borderWidth = 2.dp,
-             //cornersRadius = 0.dp
-         ).fillMaxWidth().wrapContentHeight()
+        modifier = Modifier
+            .applyBrutalism(backgroundColor = Color.White)
+            .fillMaxWidth()
+            .wrapContentHeight().clickable {  onItemClick }
     ) {
-
-
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
-                .padding(end = 32.dp)
+                .padding(start = 10.dp, top = 4.dp, bottom = 30.dp, end = 12.dp)
         ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(
+                    modifier = Modifier.weight(5f, true),
+                    text = memo.title,
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(Modifier.weight(1f))
+                Box(
+                    modifier = Modifier
+                        .size(20.dp)
+                        .weight(1f, true).clip(CircleShape)
+                        .applyBrutalism(
+                            cornersRadius = 20.dp,
+                            backgroundColor = Color(memo.colorPriority),
+                            offsetX = 0.5.dp,
+                            offsetY = 0.5.dp
+                        )
+                )
+            }
+            Spacer(modifier = Modifier.height(6.dp))
             Text(
-                text = Memo.title,
-                style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onSurface,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = Memo.text,
+                text = memo.text,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 maxLines = 10,
                 overflow = TextOverflow.Ellipsis
             )
         }
-        IconButton(
-            onClick = onDeleteClick,
-            modifier = Modifier.align(Alignment.BottomEnd)
+        Row(
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .height(30.dp),
+            horizontalArrangement = Arrangement.End,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Icon(
-                imageVector = Icons.Default.Delete,
-                contentDescription = "delete Memo",
-                tint = MaterialTheme.colorScheme.onSurface
+            Text(
+                text = DateFormat.format(stringResource(R.string.date_format), memo.timestamp).toString(),
+                style = MaterialTheme.typography.bodyMedium.copy(fontSize = 11.sp),
+                color = MaterialTheme.colorScheme.onSurface,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
+            IconButton(
+                onClick = onDeleteClick,
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Delete,
+                    contentDescription = "Delete memo ${memo.title}",
+                    tint = MaterialTheme.colorScheme.onSurface
+                )
+            }
         }
-
     }
-
 }
-

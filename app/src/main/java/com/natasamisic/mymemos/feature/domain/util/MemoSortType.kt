@@ -13,3 +13,7 @@ sealed class MemoSortType(val sortType: SortType) {
         }
     }
 }
+sealed class SortType{
+    object Ascending : SortType()
+    object Descending : SortType()
+}

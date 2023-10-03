@@ -1,16 +1,15 @@
-package com.natasamisic.mymemos.feature.data.data_source
+package com.natasamisic.mymemos.feature.data.data_source.db
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.natasamisic.mymemos.feature.data.data_source.model.Memo
+import com.natasamisic.mymemos.feature.data.data_source.db.model.Memo
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MemosDao {
-
     @Query("SELECT * FROM Memo")
     fun getMemos(): Flow<List<Memo>>
 
@@ -18,9 +17,9 @@ interface MemosDao {
     suspend fun getMemoById(id: Int): Memo?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMemo(Memo: Memo)
+    suspend fun insertMemo(memo: Memo)
 
     @Delete
-    suspend fun deleteMemo(Memo: Memo)
+    suspend fun deleteMemo(memo: Memo)
 
 }
