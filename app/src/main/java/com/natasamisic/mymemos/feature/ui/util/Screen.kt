@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.util
+package com.natasamisic.mymemos.feature.ui.util
 
 sealed class Screen(val route: String) {
     object MemosScreen: Screen("Memos_screen")

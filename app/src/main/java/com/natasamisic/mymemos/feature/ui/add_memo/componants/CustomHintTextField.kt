@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.add_memo.componants
+package com.natasamisic.mymemos.feature.ui.add_memo.componants
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth

@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.add_memo
+package com.natasamisic.mymemos.feature.ui.add_memo
 
 data class MemoTextFieldState(
     val text: String = "",

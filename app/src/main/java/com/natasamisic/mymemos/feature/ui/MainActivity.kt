@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion
+package com.natasamisic.mymemos.feature.ui
 
 
 import android.annotation.SuppressLint
@@ -23,9 +23,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.natasamisic.mymemos.feature.presentaion.add_memo.AddMemoScreen
-import com.natasamisic.mymemos.feature.presentaion.memos.MemosScreen
-import com.natasamisic.mymemos.feature.presentaion.util.Screen
+import com.natasamisic.mymemos.feature.ui.add_memo.AddMemoScreen
+import com.natasamisic.mymemos.feature.ui.memos.MemosScreen
+import com.natasamisic.mymemos.feature.ui.util.Screen
 import com.natasamisic.mymemos.ui.theme.mymemosTheme
 import dagger.hilt.android.AndroidEntryPoint
 

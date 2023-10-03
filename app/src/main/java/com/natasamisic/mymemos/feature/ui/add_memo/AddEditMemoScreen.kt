@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.add_memo
+package com.natasamisic.mymemos.feature.ui.add_memo
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.Animatable
@@ -41,8 +41,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.natasamisic.mymemos.R
 import com.natasamisic.mymemos.feature.domain.util.ColorUtils.memoColors
-import com.natasamisic.mymemos.feature.presentaion.add_memo.componants.CustomHintTextField
-import com.natasamisic.mymemos.feature.presentaion.util.NeubrutalismHelper.applyBrutalism
+import com.natasamisic.mymemos.feature.ui.add_memo.componants.CustomHintTextField
+import com.natasamisic.mymemos.feature.ui.util.NeubrutalismHelper.applyBrutalism
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

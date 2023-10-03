@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.memos
+package com.natasamisic.mymemos.feature.ui.memos
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf

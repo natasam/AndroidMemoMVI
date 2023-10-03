@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.memos
+package com.natasamisic.mymemos.feature.ui.memos
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -44,9 +44,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.natasamisic.mymemos.R
-import com.natasamisic.mymemos.feature.presentaion.memos.componants.MemoItem
-import com.natasamisic.mymemos.feature.presentaion.memos.componants.SortingView
-import com.natasamisic.mymemos.feature.presentaion.util.Screen
+import com.natasamisic.mymemos.feature.ui.memos.componants.MemoItem
+import com.natasamisic.mymemos.feature.ui.memos.componants.SortingView
+import com.natasamisic.mymemos.feature.ui.util.Screen
 import kotlinx.coroutines.launch
 
 

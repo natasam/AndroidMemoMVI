@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.memos.componants
+package com.natasamisic.mymemos.feature.ui.memos.componants
 
 import android.text.format.DateFormat
 import androidx.compose.foundation.clickable
@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.natasamisic.mymemos.R
 import com.natasamisic.mymemos.feature.domain.model.MemoDto
-import com.natasamisic.mymemos.feature.presentaion.util.NeubrutalismHelper.applyBrutalism
+import com.natasamisic.mymemos.feature.ui.util.NeubrutalismHelper.applyBrutalism
 
 @Composable
 fun MemoItem(

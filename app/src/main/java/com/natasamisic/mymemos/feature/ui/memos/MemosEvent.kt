@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.memos
+package com.natasamisic.mymemos.feature.ui.memos
 
 import com.natasamisic.mymemos.feature.domain.model.MemoDto
 import com.natasamisic.mymemos.feature.domain.util.MemoSortType
