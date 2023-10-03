@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.notes
+package com.natasamisic.mymemos.feature.presentaion.memos
 
 import com.natasamisic.mymemos.feature.data.data_source.model.Memo
 import com.natasamisic.mymemos.feature.domain.util.MemoSortType

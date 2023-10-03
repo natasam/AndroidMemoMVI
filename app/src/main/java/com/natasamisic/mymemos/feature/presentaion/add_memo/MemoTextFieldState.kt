@@ -1,6 +1,6 @@
-package com.natasamisic.mymemos.presentaion.add_edit_Memo
+package com.natasamisic.mymemos.feature.presentaion.add_memo
 
-data class MemoTextFeildState(
+data class MemoTextFieldState(
     val text: String = "",
     val hint: String = "",
     val isHintVisible: Boolean = true

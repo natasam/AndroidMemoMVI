@@ -24,7 +24,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.natasamisic.mymemos.feature.presentaion.add_memo.AddEditMemoScreen
-import com.natasamisic.mymemos.feature.presentaion.notes.MemosScreen
+import com.natasamisic.mymemos.feature.presentaion.memos.MemosScreen
 import com.natasamisic.mymemos.feature.presentaion.util.Screen
 import com.natasamisic.mymemos.ui.theme.mymemosTheme
 import dagger.hilt.android.AndroidEntryPoint

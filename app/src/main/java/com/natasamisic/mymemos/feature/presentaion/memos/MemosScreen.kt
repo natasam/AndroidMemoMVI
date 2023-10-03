@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.notes
+package com.natasamisic.mymemos.feature.presentaion.memos
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.*
@@ -27,8 +27,8 @@ import kotlinx.coroutines.launch
 import androidx.compose.material.rememberScaffoldState
 
 import androidx.compose.ui.graphics.Color
-import com.natasamisic.mymemos.feature.presentaion.notes.componants.MemoItem
-import com.natasamisic.mymemos.feature.presentaion.notes.componants.OrderSection
+import com.natasamisic.mymemos.feature.presentaion.memos.componants.MemoItem
+import com.natasamisic.mymemos.feature.presentaion.memos.componants.OrderSection
 import com.natasamisic.mymemos.feature.presentaion.util.Screen
 
 

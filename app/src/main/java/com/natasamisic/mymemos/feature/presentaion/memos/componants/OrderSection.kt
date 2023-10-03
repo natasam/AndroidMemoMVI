@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.notes.componants
+package com.natasamisic.mymemos.feature.presentaion.memos.componants
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable

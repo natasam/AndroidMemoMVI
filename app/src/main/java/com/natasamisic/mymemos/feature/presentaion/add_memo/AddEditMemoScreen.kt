@@ -6,11 +6,22 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -38,22 +49,22 @@ fun AddEditMemoScreen(
     viewModel: AddEditMemoViewModel = hiltViewModel()
 ) {
 
-    val titleState = viewModel.MemoTitle.value
-    val contentState = viewModel.MemoContent.value
+    val titleState = viewModel.memoTitle.value
+    val contentState = viewModel.memoContent.value
 
     val scaffoldState = rememberScaffoldState()
 
     val memoBackgroundAnimatable = remember {
         Animatable(
-            Color(if (memoColor != -1) memoColor else viewModel.MemoColor.value)
+            Color(if (memoColor != -1) memoColor else viewModel.memoColor.value)
         )
     }
 
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = true) {
-        viewModel.eventFlow.collectLatest {event ->
-            when (event){
+        viewModel.eventFlow.collectLatest { event ->
+            when (event) {
                 is AddEditMemoViewModel.UiEvent.ShowSnackBar -> {
                     scaffoldState.snackbarHostState.showSnackbar(message = event.message)
                 }
@@ -69,10 +80,10 @@ fun AddEditMemoScreen(
     Scaffold(
         topBar = {
 
-                 Text(
-                    modifier = Modifier.padding(top = 50.dp, start = 26.dp),
-                    text = "My Memos",
-                    style = MaterialTheme.typography.headlineMedium, color = Color.Black
+            Text(
+                modifier = Modifier.padding(top = 50.dp, start = 26.dp),
+                text = "My Memos",
+                style = MaterialTheme.typography.headlineMedium, color = Color.Black
 
             )
         },
@@ -102,7 +113,7 @@ fun AddEditMemoScreen(
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-               memoColors.forEach { color ->
+                memoColors.forEach { color ->
                     val colorInt = color.toArgb()
                     Box(
                         modifier = Modifier
@@ -111,7 +122,7 @@ fun AddEditMemoScreen(
                             .background(color)
                             .border(
                                 width = 3.dp,
-                                color = if (viewModel.MemoColor.value == colorInt) Color.Black else Color.Transparent,
+                                color = if (viewModel.memoColor.value == colorInt) Color.Black else Color.Transparent,
                                 shape = CircleShape
                             )
                             .clickable {

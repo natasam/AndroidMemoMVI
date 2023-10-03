@@ -1,4 +1,4 @@
-package com.natasamisic.mymemos.feature.presentaion.notes.componants
+package com.natasamisic.mymemos.feature.presentaion.memos.componants
 
 import com.natasamisic.mymemos.feature.data.data_source.model.Memo
 
