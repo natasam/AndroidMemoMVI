@@ -65,7 +65,9 @@ class MemosViewModel @Inject constructor(
             }
 
             is MemosEvent.EditMemo -> {
-
+               // viewModelScope.launch {
+                   // memoUseCases.editMemoUseCase(event.memo)
+               // }
             }
         }
 

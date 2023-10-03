@@ -5,6 +5,5 @@ data class MemoUseCases(
     val getMemosUseCase: GetMemosUseCase,
     val deleteMemoUseCase: DeleteMemoUseCase,
     val addMemoUseCase: AddMemoUseCase,
-    val getMemoUseCase: GetMemoUseCase
-)
+    val getMemoUseCase: GetMemoUseCase)
 

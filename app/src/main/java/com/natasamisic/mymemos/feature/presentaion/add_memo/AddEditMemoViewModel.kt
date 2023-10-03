@@ -39,7 +39,7 @@ class AddEditMemoViewModel @Inject constructor(
     private var currentMemoId: Int? = null
 
     init {
-        savedStateHandle.get<Int>("MemoId")?.let { memoId ->
+        savedStateHandle.get<Int>("memoId")?.let { memoId ->
             if (memoId != -1) {
                 viewModelScope.launch {
                     memoUseCases.getMemoUseCase(memoId)?.also { memo ->
@@ -82,7 +82,7 @@ class AddEditMemoViewModel @Inject constructor(
                 )
                 _eventFlow.emit(UiEvent.SaveMemo)
             } catch (e: InvalidMemoException) {
-                _eventFlow.emit(UiEvent.ShowSnackBar(message = e.message ?: "Couldn't save Memo!"))
+                _eventFlow.emit(UiEvent.ShowSnackBar(message = e.message))
             }
         }
     }

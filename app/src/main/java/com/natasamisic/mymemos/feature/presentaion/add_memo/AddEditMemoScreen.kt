@@ -35,9 +35,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.natasamisic.mymemos.R
 import com.natasamisic.mymemos.feature.domain.util.ColorUtils.memoColors
 import com.natasamisic.mymemos.feature.presentaion.add_memo.componants.CustomHintTextField
 import com.natasamisic.mymemos.feature.presentaion.util.NeubrutalismHelper.applyBrutalism
@@ -159,7 +161,7 @@ private fun BackButton(onBackClick: () -> Unit) {
 fun MemoTopBar() {
     Text(
         modifier = Modifier.padding(top = 2.dp, start = 26.dp),
-        text = "New memo",
+        text = stringResource(R.string.new_memo),
         style = MaterialTheme.typography.headlineMedium,
         color = Color.Black
     )
