@@ -62,11 +62,12 @@ fun MemoItem(
                 Spacer(Modifier.weight(1f))
                 Box(
                     modifier = Modifier
-                        .size(20.dp)
+                        .size(22.dp)
                         .weight(1f, true).clip(CircleShape)
                         .applyBrutalism(
-                            cornersRadius = 20.dp,
+                            cornersRadius = 10.dp,
                             backgroundColor = Color(memo.colorPriority),
+                            shadowColor = Color.LightGray,
                             offsetX = 0.5.dp,
                             offsetY = 0.5.dp
                         )
