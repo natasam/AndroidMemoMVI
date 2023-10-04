@@ -10,6 +10,8 @@ import com.natasamisic.mymemos.feature.domain.util.MemoSortType
 import com.natasamisic.mymemos.feature.domain.util.SortType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -26,6 +28,8 @@ class MemosViewModel @Inject constructor(
     private var recentlyDeletedMemo: MemoDto? = null
 
     private var getMemosJob: Job? = null
+    private val _eventFlow = MutableSharedFlow<UiEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
 
     init {
         getMemos(MemoSortType.Date(SortType.Descending))
@@ -65,12 +69,13 @@ class MemosViewModel @Inject constructor(
             }
 
             is MemosEvent.EditMemo -> {
-               // viewModelScope.launch {
-                   // memoUseCases.editMemoUseCase(event.memo)
-               // }
-            }
-        }
+                viewModelScope.launch {
+                    _eventFlow.emit(UiEvent.EditMemo(event.memo))
 
+                }
+            }
+
+        }
     }
 
     private fun getMemos(memoSortType: MemoSortType) {
@@ -83,4 +88,8 @@ class MemosViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
+}
+
+sealed class UiEvent {
+    data class EditMemo(val memoDto: MemoDto) : UiEvent()
 }

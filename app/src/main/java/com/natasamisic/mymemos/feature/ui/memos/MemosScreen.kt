@@ -31,6 +31,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,9 +45,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.natasamisic.mymemos.R
+import com.natasamisic.mymemos.feature.ui.add_memo.AddEditMemoViewModel
 import com.natasamisic.mymemos.feature.ui.memos.componants.MemoItem
 import com.natasamisic.mymemos.feature.ui.memos.componants.SortingView
 import com.natasamisic.mymemos.feature.ui.util.Screen
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
@@ -65,7 +68,15 @@ fun MemosScreen(
     val sheetState = rememberModalBottomSheetState()
 
     var showBottomSheet by remember { mutableStateOf(false) }
-
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is UiEvent.EditMemo -> {
+                    scaffoldState.snackbarHostState.showSnackbar(message = "Editing memos coming soon.")
+                }
+            }
+        }
+    }
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {

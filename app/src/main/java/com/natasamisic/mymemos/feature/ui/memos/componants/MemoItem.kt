@@ -41,7 +41,7 @@ fun MemoItem(
         modifier = Modifier
             .applyBrutalism(backgroundColor = Color.White)
             .fillMaxWidth()
-            .wrapContentHeight().clickable {  onItemClick }
+            .wrapContentHeight().clickable {  onItemClick() }
     ) {
         Column(
             modifier = Modifier

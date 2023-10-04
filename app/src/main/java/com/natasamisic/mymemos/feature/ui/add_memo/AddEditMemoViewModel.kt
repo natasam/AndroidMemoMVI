@@ -20,9 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditMemoViewModel @Inject constructor(
-    private val memoUseCases: MemoUseCases,
-    savedStateHandle: SavedStateHandle
-) : ViewModel() {
+    private val memoUseCases: MemoUseCases) : ViewModel() {
 
     private val _memoTitle = mutableStateOf(MemoTextFieldState(hint = "Enter title..."))
     val memoTitle: State<MemoTextFieldState> = _memoTitle
@@ -37,21 +35,6 @@ class AddEditMemoViewModel @Inject constructor(
     val eventFlow = _eventFlow.asSharedFlow()
 
     private var currentMemoId: Int? = null
-
-    init {
-        savedStateHandle.get<Int>("memoId")?.let { memoId ->
-            if (memoId != -1) {
-                viewModelScope.launch {
-                    memoUseCases.getMemoUseCase(memoId)?.also { memo ->
-                        currentMemoId = memo.id
-                        _memoTitle.value = memoTitle.value.copy(text = memo.title, isHintVisible = false)
-                        _memoContent.value = memoContent.value.copy(text = memo.text, isHintVisible = false)
-                        _memoColor.value = memo.colorPriority
-                    }
-                }
-            }
-        }
-    }
 
     fun onEvent(event: AddEditMemoEvent) {
         when (event) {
