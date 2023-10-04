@@ -34,4 +34,6 @@ The UI is done with simplicity, in the Neobrutalism style, as the focus and the 
 * Learn more about the recommended [Modern App Architecture](https://developer.android.com/topic/architecture) .
 
   
-  <img src="photos/screenshot.png" alt="Android App " width="200"> 
+  <img src="photos/screenshot.png" alt="Android App " width="200">   <img src="photos/screenshot1.png" alt="Android App " width="200">   <img src="photos/screenshot2.png" alt="Android App " width="200"> 
+
+
